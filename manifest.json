@@ -1,0 +1,54 @@
+
+  {
+  "manifest_version": 3,
+  "name": "MindfulBrowse",
+  "version": "1.0",
+  "description": "A digital detox browser extension that helps you stay focused and build productive habits.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "permissions": [
+    "storage",
+    "tabs",
+    "activeTab",
+    "alarms",
+    "scripting"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "Background/background.js"
+  },
+  "action": {
+    "default_popup": "Popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["Content/content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["icons/*"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "options_page": "options.html",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "mindfulbrowse@yourdomain.com",
+      "strict_min_version": "109.0"
+    }
+  }
+}
+
